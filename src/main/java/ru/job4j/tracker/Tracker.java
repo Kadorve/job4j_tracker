@@ -30,15 +30,8 @@ public class Tracker {
     }
 
     public Item findById(int id) {
-        Item rsl = null;
-        for (int index = 0; index < size; index++) {
-            Item item = this.items[index];
-            if (item.getId() == id) {
-                rsl = item;
-                break;
-            }
-        }
-        return rsl;
+        int index = indexOf(id);
+        return index != -1 ? items[index] : null;
     }
 
     private int indexOf(int id) {
@@ -50,5 +43,15 @@ public class Tracker {
             }
         }
         return rsl;
+    }
+
+    public boolean replace (int id, Item item) {
+        int index = indexOf(id);
+        if (index == -1) {
+            return false;
+        }
+        item.setId(id);
+        items[index] = item;
+        return true;
     }
 }
