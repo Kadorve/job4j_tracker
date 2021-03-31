@@ -14,8 +14,7 @@ public class StartUI {
                 System.out.println("=== Add new item ===");
                 System.out.print("Enter name: ");
                 String name = scanner.nextLine();
-                Item item = new Item();
-                item.setName(name);
+                Item item = new Item(name);
                 tracker.add(item);
             } else if (select == 1) {
                 System.out.println("=== Show all items ===");
@@ -29,8 +28,7 @@ public class StartUI {
                 int id = Integer.parseInt(scanner.nextLine());
                 System.out.println("Enter name: ");
                 String name = scanner.nextLine();
-                Item newItem = new Item();
-                newItem.setName(name);
+                Item newItem = new Item(name);
                 if (tracker.replace(id, newItem)) {
                     System.out.println("Заявка успешно заменена");
                 } else {
