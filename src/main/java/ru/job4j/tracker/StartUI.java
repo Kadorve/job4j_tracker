@@ -28,41 +28,43 @@ public class StartUI {
                 int id = Integer.parseInt(scanner.nextLine());
                 System.out.println("Enter name: ");
                 String name = scanner.nextLine();
-                Item item = new Item();
-                item.setName(name);
-                tracker.replace(id, item);
-                if (tracker.replace(id, item)) {
-                    //вывод об успешности операции
+                Item newItem = new Item();
+                newItem.setName(name);
+                tracker.replace(id, newItem);
+                if (tracker.replace(id, newItem)) {
+                    System.out.println("Заявка успешно заменена");
                 } else {
-                    //вывод об ошибке
+                    System.out.println("Ошибка при замене заявки");
                 }
             } else if (select == 3) {
                 System.out.println("=== Delete item ===");
                 System.out.println("=== Enter ID: ");
                 int id = Integer.parseInt(scanner.nextLine());
-                tracker.delete(id);
                 if (tracker.delete(id)) {
-                    //вывод об успешной операции
+                    System.out.println("Заявка удалена");
                 } else {
-                    //вывод об ошибке
+                    System.out.println("Заявка по указанному ID не найдена. Удаление невозможно.");
                 }
             } else if (select == 4) {
                 System.out.println("=== Find item by ID===");
                 System.out.println("Enter ID: ");
                 int id = Integer.parseInt(scanner.nextLine());
-                Item item = tracker.findById(id);
-                /* Валидировать результаты работы метода findById, т.к. метод может вернуть null.
-                Если заявка не равна null, то печатаем в консоль заявку, иначе  - "Заявка не найдена."
-                 */
+                Item newItem = tracker.findById(id);
+                if (newItem != null) {
+                    System.out.println(newItem);
+                } else {
+                    System.out.println("Заявка не найдена.");
+                }
             } else if (select == 5) {
                 System.out.println("=== Find items by name ===");
                 System.out.println("Enter name: ");
                 String name = scanner.nextLine();
                 Item[] items = tracker.findByName(name);
-                /*Необходимо валидировать, т.к. метод может вернуть пустой массив.
-                Если длина массива больше 0, то выводим массив в соответствии с примечанием 1, иначе - "Заявки с таким именем не найдены."
-                 */
-
+                if (items.length > 0) {
+                    System.out.println(Arrays.toString(items));
+                } else {
+                    System.out.println("Заявки с таким именем не найдены.");
+                }
             } else if (select == 6) {
                 run = false;
             }
@@ -76,7 +78,7 @@ public class StartUI {
         System.out.println("2. Edit item");
         System.out.println("3. Delete item");
         System.out.println("4. Find item by ID");
-        System.out.println("5. Find items bu name");
+        System.out.println("5. Find items by name");
         System.out.println("6. Exit program");
     }
 
