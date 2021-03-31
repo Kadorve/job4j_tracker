@@ -1,6 +1,5 @@
 package ru.job4j.tracker;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class StartUI {
@@ -21,7 +20,9 @@ public class StartUI {
             } else if (select == 1) {
                 System.out.println("=== Show all items ===");
                 Item[] items = tracker.findAll();
-                System.out.println(Arrays.toString(items)); //вывод выполнить в соответствии с примечанием 1.
+                for (Item current : items) {
+                    System.out.println(current);
+                }
             } else if (select == 2) {
                 System.out.println("=== Edit item ===");
                 System.out.println("Enter ID: ");
@@ -30,7 +31,6 @@ public class StartUI {
                 String name = scanner.nextLine();
                 Item newItem = new Item();
                 newItem.setName(name);
-                tracker.replace(id, newItem);
                 if (tracker.replace(id, newItem)) {
                     System.out.println("Заявка успешно заменена");
                 } else {
@@ -61,7 +61,9 @@ public class StartUI {
                 String name = scanner.nextLine();
                 Item[] items = tracker.findByName(name);
                 if (items.length > 0) {
-                    System.out.println(Arrays.toString(items));
+                    for (Item current : items) {
+                        System.out.println(current);
+                    }
                 } else {
                     System.out.println("Заявки с таким именем не найдены.");
                 }
